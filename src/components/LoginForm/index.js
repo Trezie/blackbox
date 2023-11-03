@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import logo from '../../assets/logo.svg';
 
 
+
 export default function LoginForm() {
   const [showAlert, setShowAlert] = useState(false);
   const validateForm = (event) => {
@@ -19,6 +20,37 @@ export default function LoginForm() {
     const password = data.get('password');
 
     // Add validation code here
+    
+    const emailValidator = require('email-validator');
+
+    function validateEmail(email) {
+      return emailValidator.validate(email);
+    }
+
+    function validatePassword(password) {
+      // Minimum of 8 characters, at least one uppercase letter, one lowercase letter,
+      // one numerical digit, and one special character
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+      return passwordPattern.test(password);
+    }
+
+    // Example usage
+   
+    if (validateEmail(email)) {
+      console.log("Email is valid.");
+    } else {
+      console.log("Email is invalid.");
+    }
+
+
+    if (validatePassword(password)) {
+      console.log("Password is valid.");
+    } else {
+      console.log("Password is invalid.");
+    }
+
+
+
 
   }
 
